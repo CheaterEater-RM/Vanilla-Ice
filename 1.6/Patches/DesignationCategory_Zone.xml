@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!--
+    Register the Ice Harvest Zone designator in the vanilla "Zone" category
+    so it appears alongside Growing Zone, Stockpile Zone, etc. in the Zones tab.
+  -->
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/DesignationCategoryDef[defName="Zone"]/specialDesignatorClasses</xpath>
+    <value>
+      <li>VanillaIce.Designator_ZoneAdd_IceHarvest</li>
+    </value>
+  </Operation>
+
+</Patch>

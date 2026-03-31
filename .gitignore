@@ -1,0 +1,13 @@
+# Logs and build output
+1.6/Assemblies/*.dll
+1.6/Assemblies/*.pdb
+
+# Visual Studio
+Source/.vs/
+Source/bin/
+Source/obj/
+*.user
+
+# OS
+.DS_Store
+Thumbs.db

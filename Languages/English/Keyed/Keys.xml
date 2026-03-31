@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Zone name (used as label and in inspect string header) -->
+  <VanillaIce_IceHarvestZone>Ice Harvest Zone</VanillaIce_IceHarvestZone>
+
+  <!-- Designator tooltip -->
+  <VanillaIce_DesignatorIceHarvestZoneDesc>Designate an area where colonists will harvest ice from frozen water.</VanillaIce_DesignatorIceHarvestZoneDesc>
+
+  <!-- Zone gizmo — allow/disallow toggle -->
+  <VanillaIce_CommandAllowHarvestIce>Allow harvesting</VanillaIce_CommandAllowHarvestIce>
+  <VanillaIce_CommandAllowHarvestIceDesc>Enables or disables ice harvesting in this zone.</VanillaIce_CommandAllowHarvestIceDesc>
+
+  <!-- Zone inspect string -->
+  <VanillaIce_HarvestableCells>Harvestable cells</VanillaIce_HarvestableCells>
+
+</LanguageData>

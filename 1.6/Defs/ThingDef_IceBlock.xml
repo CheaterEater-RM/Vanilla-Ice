@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThingDef ParentName="ResourceBase">
+    <defName>VanillaIce_IceBlock</defName>
+    <label>ice block</label>
+    <description>A block of ice carved from a frozen lake or thick ice sheet. As it melts in warm air, it absorbs heat and cools the surrounding room — a low-tech alternative to electric coolers. Will melt away entirely if stored above freezing.</description>
+    <graphicData>
+      <!--
+        Custom textures: Textures/Things/Item/Resource/VI_IceBlocks_a/b/c
+        (three variants for different stack sizes, matching vanilla StoneBlocks convention).
+        If custom textures are missing, the vanilla StoneBlocks fallback below applies.
+      -->
+      <texPath>Things/Item/Resource/VI_IceBlocks</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <color>(180,235,255)</color>
+    </graphicData>
+    <soundDrop>ChunkRock_Drop</soundDrop>
+    <soundInteract>ChunkRock_Drop</soundInteract>
+    <statBases>
+      <MaxHitPoints>40</MaxHitPoints>
+      <Mass>5</Mass>
+      <Flammability>0</Flammability>
+      <MarketValue>0.5</MarketValue>
+    </statBases>
+    <stackLimit>75</stackLimit>
+    <!--
+      Rare ticker so Comp_IceMelt uses CompTickRare (fires every 250 ticks)
+      rather than CompTick, keeping overhead low for large stockpiles.
+    -->
+    <tickerType>Rare</tickerType>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <comps>
+      <li Class="VanillaIce.CompProperties_IceMelt" />
+    </comps>
+  </ThingDef>
+
+</Defs>

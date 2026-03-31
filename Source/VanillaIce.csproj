@@ -1,0 +1,65 @@
+<!--
+  RimWorld Mod .csproj — Vanilla Ice
+  ====================================
+
+  SETUP:
+  1. Ensure RimWorld.Paths.props exists two directories above Source\
+     (at the Rimworld Mods\ root folder, outside any repo)
+  2. Build in Visual Studio: open Source\VanillaIce.sln, Ctrl+Shift+B
+
+  PRIVACY: This csproj contains NO absolute paths and NO personal info.
+  All machine-specific paths come from the imported .props file.
+-->
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- ================================================================ -->
+  <!-- Import machine-specific game paths (lives outside this repo)     -->
+  <!-- ================================================================ -->
+  <Import Project="..\..\RimWorld.Paths.props" />
+
+  <!-- ================================================================ -->
+  <!-- Project configuration                                            -->
+  <!-- ================================================================ -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>VanillaIce</RootNamespace>
+    <AssemblyName>VanillaIce</AssemblyName>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+    <Description>Ice harvesting and passive cooling for RimWorld 1.6</Description>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>..\1.6\Assemblies\</OutputPath>
+
+    <!-- Auto-include all *.cs in Source\ and subdirs -->
+    <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <!-- ================================================================ -->
+  <!-- CORE REFERENCES                                                  -->
+  <!-- ================================================================ -->
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(RimWorldManaged)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(RimWorldManaged)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- ================================================================ -->
+  <!-- UNITY MODULES                                                    -->
+  <!-- ================================================================ -->
+  <ItemGroup>
+    <!-- OnGUI, Rect, GUI, GUILayout, Widgets -->
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>$(RimWorldManaged)\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <JobDef>
+    <defName>VanillaIce_HarvestIce</defName>
+    <driverClass>VanillaIce.JobDriver_HarvestIce</driverClass>
+    <reportString>harvesting ice.</reportString>
+    <collideWithPawns>false</collideWithPawns>
+  </JobDef>
+
+  <WorkGiverDef>
+    <defName>VanillaIce_HarvestIce</defName>
+    <giverClass>VanillaIce.WorkGiver_HarvestIce</giverClass>
+    <workType>Mining</workType>
+    <label>harvest ice</label>
+    <verb>harvest</verb>
+    <gerund>harvesting ice</gerund>
+    <priorityInType>30</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+  </WorkGiverDef>
+
+</Defs>
