@@ -5,7 +5,7 @@
   <VanillaIce_IceHarvestZone>Ice Harvest Zone</VanillaIce_IceHarvestZone>
 
   <!-- Designator tooltip -->
-  <VanillaIce_DesignatorIceHarvestZoneDesc>Designate an area where colonists will harvest ice from frozen water.</VanillaIce_DesignatorIceHarvestZoneDesc>
+  <VanillaIce_DesignatorIceHarvestZoneDesc>Designate an area where colonists will harvest ice blocks.</VanillaIce_DesignatorIceHarvestZoneDesc>
 
   <!-- Zone gizmo — allow/disallow toggle -->
   <VanillaIce_CommandAllowHarvestIce>Allow harvesting</VanillaIce_CommandAllowHarvestIce>
@@ -13,5 +13,20 @@
 
   <!-- Zone inspect string -->
   <VanillaIce_HarvestableCells>Harvestable cells</VanillaIce_HarvestableCells>
+
+  <!-- Settings window -->
+  <VanillaIce_SettingsCategory>Vanilla Ice</VanillaIce_SettingsCategory>
+
+  <VanillaIce_Settings_HarvestHeader>Harvesting</VanillaIce_Settings_HarvestHeader>
+  <!-- {0} = current value -->
+  <VanillaIce_Settings_BlocksPerHarvest>Blocks per harvest action: {0}
+Base number of ice blocks yielded per harvest. The pawn's Mining Yield stat scales this up or down. </VanillaIce_Settings_BlocksPerHarvest>
+
+  <VanillaIce_Settings_CoolingHeader>Cooling</VanillaIce_Settings_CoolingHeader>
+  <!-- {0} = current value -->
+  <VanillaIce_Settings_ColdEnergyPerBlock>Cooling power per block: {0} GEU
+Energy absorbed per block per melt tick (every ~4 seconds). Vanilla cooler reference: ~88 GEU per tick.</VanillaIce_Settings_ColdEnergyPerBlock>
+
+  <VanillaIce_Settings_ResetDefaults>Reset to defaults</VanillaIce_Settings_ResetDefaults>
 
 </LanguageData>

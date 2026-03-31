@@ -8,9 +8,11 @@
   </supportedVersions>
   <description>Harvest ice from frozen lakes and use ice blocks to cool your base.
 
-Pawns can designate Ice Harvest Zones over thin ice. Harvesting a cell removes the ice (which can refreeze naturally) and yields ice blocks. Ice blocks absorb heat as they melt, cooling the room they are stored in — a low-tech alternative to electric coolers.
+Pawns can designate Ice Harvest Zones over thin ice or thick ice sheets. Harvesting yields ice blocks which absorb heat as they melt, cooling the room they are stored in — a low-tech alternative to electric coolers.
 
-Requires the Odyssey DLC for thin ice terrain. The mod loads safely without Odyssey but will have no effect.</description>
+Requires the Odyssey DLC for thin-ice harvesting. Thick ice (vanilla) is always available. The mod loads safely without Odyssey.
+
+Configure cooling power and harvest yield in Mod Settings.</description>
 
   <loadAfter>
     <li>Ludeon.RimWorld</li>
