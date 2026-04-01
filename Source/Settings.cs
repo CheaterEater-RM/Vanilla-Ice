@@ -60,6 +60,12 @@ namespace VanillaIce
             Settings.SnowballColdEnergy = Mathf.Round(Settings.SnowballColdEnergy / 10f) * 10f;
 
             list.Gap();
+            list.Label("VanillaIce_Settings_CaravanMeltRate".Translate(
+                Settings.CaravanStackMeltPerDayAt25C.ToString("0.00")));
+            Settings.CaravanStackMeltPerDayAt25C = list.Slider(Settings.CaravanStackMeltPerDayAt25C, 0f, 1f);
+            Settings.CaravanStackMeltPerDayAt25C = Mathf.Round(Settings.CaravanStackMeltPerDayAt25C * 100f) / 100f;
+
+            list.Gap();
             if (list.ButtonText("VanillaIce_Settings_ResetDefaults".Translate()))
                 Settings.ResetToDefaults();
 
@@ -80,12 +86,14 @@ namespace VanillaIce
         public const float DefaultColdEnergyPerBlock  = 200f;
         public const float DefaultSnowballsPerHarvest = 10f;
         public const float DefaultSnowballColdEnergy  = 100f;
+        public const float DefaultCaravanStackMeltPerDayAt25C = 0.25f;
 
         // --- Live values ---
         public float BlocksPerHarvest    = DefaultBlocksPerHarvest;
         public float ColdEnergyPerBlock  = DefaultColdEnergyPerBlock;
         public float SnowballsPerHarvest = DefaultSnowballsPerHarvest;
         public float SnowballColdEnergy  = DefaultSnowballColdEnergy;
+        public float CaravanStackMeltPerDayAt25C = DefaultCaravanStackMeltPerDayAt25C;
 
         public void ResetToDefaults()
         {
@@ -93,6 +101,7 @@ namespace VanillaIce
             ColdEnergyPerBlock  = DefaultColdEnergyPerBlock;
             SnowballsPerHarvest = DefaultSnowballsPerHarvest;
             SnowballColdEnergy  = DefaultSnowballColdEnergy;
+            CaravanStackMeltPerDayAt25C = DefaultCaravanStackMeltPerDayAt25C;
         }
 
         public override void ExposeData()
@@ -101,6 +110,7 @@ namespace VanillaIce
             Scribe_Values.Look(ref ColdEnergyPerBlock,  "coldEnergyPerBlock",  DefaultColdEnergyPerBlock);
             Scribe_Values.Look(ref SnowballsPerHarvest, "snowballsPerHarvest", DefaultSnowballsPerHarvest);
             Scribe_Values.Look(ref SnowballColdEnergy,  "snowballColdEnergy",  DefaultSnowballColdEnergy);
+            Scribe_Values.Look(ref CaravanStackMeltPerDayAt25C, "caravanStackMeltPerDayAt25C", DefaultCaravanStackMeltPerDayAt25C);
             base.ExposeData();
         }
     }

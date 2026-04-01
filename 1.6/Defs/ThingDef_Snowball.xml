@@ -13,7 +13,7 @@
     <soundInteract>ChunkRock_Drop</soundInteract>
     <statBases>
       <MaxHitPoints>20</MaxHitPoints>
-      <Mass>2</Mass>
+      <Mass>0.5</Mass>
       <Flammability>0</Flammability>
       <MarketValue>0.2</MarketValue>
     </statBases>

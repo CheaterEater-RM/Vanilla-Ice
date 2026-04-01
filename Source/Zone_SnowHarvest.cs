@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -24,7 +23,55 @@ namespace VanillaIce
             return c.GetSnowDepth(Map) >= MinHarvestDepth;
         }
 
-        public IEnumerable<IntVec3> HarvestableCells => cells.Where(IsHarvestable);
+        public IEnumerable<IntVec3> HarvestableCells
+        {
+            get
+            {
+                foreach (IntVec3 cell in cells)
+                {
+                    if (IsHarvestable(cell))
+                        yield return cell;
+                }
+            }
+        }
+
+        public bool TryGetClosestHarvestableDistanceSquared(IntVec3 from, out float distanceSquared)
+        {
+            distanceSquared = float.MaxValue;
+            bool found = false;
+
+            foreach (IntVec3 cell in cells)
+            {
+                if (!IsHarvestable(cell)) continue;
+
+                found = true;
+                float candidate = from.DistanceToSquared(cell);
+                if (candidate < distanceSquared)
+                    distanceSquared = candidate;
+            }
+
+            return found;
+        }
+
+        public IEnumerable<IntVec3> HarvestableCellsInRandomOrder()
+        {
+            foreach (IntVec3 cell in cells.InRandomOrder())
+            {
+                if (IsHarvestable(cell))
+                    yield return cell;
+            }
+        }
+
+        public int HarvestableCellCount()
+        {
+            int count = 0;
+            foreach (IntVec3 cell in cells)
+            {
+                if (IsHarvestable(cell))
+                    count++;
+            }
+            return count;
+        }
 
         public override IEnumerable<Gizmo> GetZoneAddGizmos()
         {
@@ -52,7 +99,7 @@ namespace VanillaIce
 
         public override string GetInspectString()
         {
-            int count = HarvestableCells.Count();
+            int count = HarvestableCellCount();
             return base.GetInspectString()
                 + "\n" + "VanillaIce_HarvestableCells".Translate() + ": " + count;
         }

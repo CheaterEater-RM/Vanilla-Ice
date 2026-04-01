@@ -1,5 +1,3 @@
-using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace VanillaIce
@@ -9,30 +7,15 @@ namespace VanillaIce
         public CompProperties_SnowballMelt() { compClass = typeof(Comp_SnowballMelt); }
     }
 
-    public class Comp_SnowballMelt : ThingComp
+    public class Comp_SnowballMelt : Comp_MeltableBase
     {
         private const float TempDropPerBall = 4f;
-        private const float MeltThreshold   = 0f;
 
-        public override void CompTickRare()
-        {
-            Map map = parent.Map;
-            if (map == null) return;
+        protected override float TempDropPerUnit => TempDropPerBall;
 
-            float temp = parent.Position.GetTemperature(map);
-            if (temp <= MeltThreshold) return;
+        protected override float ColdEnergyPerUnit => GetConfiguredColdEnergy(VanillaIceMod.Settings?.SnowballColdEnergy
+                                                                              ?? VanillaIceSettings.DefaultSnowballColdEnergy);
 
-            int ballsMelted = Mathf.CeilToInt(temp / TempDropPerBall);
-            ballsMelted = Mathf.Min(ballsMelted, parent.stackCount);
-
-            float coldEnergyPerBall = VanillaIceMod.Settings?.SnowballColdEnergy
-                                      ?? VanillaIceSettings.DefaultSnowballColdEnergy;
-
-            GenTemperature.PushHeat(parent, -(ballsMelted * coldEnergyPerBall));
-
-            parent.stackCount -= ballsMelted;
-            if (parent.stackCount <= 0)
-                parent.Destroy();
-        }
+        protected override float DefaultColdEnergyPerUnit => VanillaIceSettings.DefaultSnowballColdEnergy;
     }
 }

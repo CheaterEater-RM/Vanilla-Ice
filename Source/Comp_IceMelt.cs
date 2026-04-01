@@ -1,5 +1,3 @@
-using RimWorld;
-using UnityEngine;
 using Verse;
 
 namespace VanillaIce
@@ -21,37 +19,15 @@ namespace VanillaIce
     /// ColdEnergyPerBlock is read from VanillaIceSettings so players can tune it.
     /// TempDropPerBlock is fixed: each 4 °C above freezing causes one block to melt.
     /// </summary>
-    public class Comp_IceMelt : ThingComp
+    public class Comp_IceMelt : Comp_MeltableBase
     {
-        // Each 4 °C above freezing causes one extra block to melt per interval.
-        // Kept fixed — adjusting this would make the melt curve non-obvious to players.
         private const float TempDropPerBlock = 4f;
-        private const float MeltThreshold    = 0f;
 
-        public override void CompTickRare()
-        {
-            Map map = parent.Map;
-            if (map == null) return;
+        protected override float TempDropPerUnit => TempDropPerBlock;
 
-            float temp = parent.Position.GetTemperature(map);
-            if (temp <= MeltThreshold) return;
+        protected override float ColdEnergyPerUnit => GetConfiguredColdEnergy(VanillaIceMod.Settings?.ColdEnergyPerBlock
+                                                                              ?? VanillaIceSettings.DefaultColdEnergyPerBlock);
 
-            // How many blocks melt this interval?
-            // One block per TempDropPerBlock °C above freezing, capped to stack size.
-            int blocksMelted = Mathf.CeilToInt(temp / TempDropPerBlock);
-            blocksMelted = Mathf.Min(blocksMelted, parent.stackCount);
-
-            // Read cooling power from settings (player-configurable).
-            float coldEnergyPerBlock = VanillaIceMod.Settings?.ColdEnergyPerBlock
-                                       ?? VanillaIceSettings.DefaultColdEnergyPerBlock;
-
-            // Push cold into the room — negative energy = cooling,
-            // using the same API as vanilla heaters and coolers.
-            GenTemperature.PushHeat(parent, -(blocksMelted * coldEnergyPerBlock));
-
-            parent.stackCount -= blocksMelted;
-            if (parent.stackCount <= 0)
-                parent.Destroy();
-        }
+        protected override float DefaultColdEnergyPerUnit => VanillaIceSettings.DefaultColdEnergyPerBlock;
     }
 }

@@ -44,4 +44,8 @@ Base number of snowballs yielded per harvest. Mining Yield stat applies.</Vanill
   <VanillaIce_Settings_SnowballColdEnergy>Cooling power per snowball: {0} GEU
 Energy absorbed per snowball. At 100 GEU, 1 full stack lasts 1 to 2 days.</VanillaIce_Settings_SnowballColdEnergy>
 
+  <!-- {0} = current value -->
+  <VanillaIce_Settings_CaravanMeltRate>Ice melt in caravans tuning at 25 C: ~{0} full stacks per day
+At 0.25, a full 75-stack of ice blocks or snowballs melts by about one quarter per day at 25 C. Smaller stacks melt proportionally faster.</VanillaIce_Settings_CaravanMeltRate>
+
 </LanguageData>

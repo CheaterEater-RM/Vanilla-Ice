@@ -16,6 +16,8 @@ namespace VanillaIce
 
         public override Job NonScanJob(Pawn pawn)
         {
+            if (pawn.Map == null) return null;
+
             Zone_IceHarvest bestZone = null;
             float bestDistSq = float.MaxValue;
 
@@ -24,14 +26,8 @@ namespace VanillaIce
                 Zone_IceHarvest hz = z as Zone_IceHarvest;
                 if (hz == null) continue;
                 if (!hz.Allowed) continue;
-                if (!hz.HarvestableCells.Any()) continue;
+                if (!hz.TryGetClosestHarvestableDistanceSquared(pawn.Position, out float minDistSq)) continue;
 
-                float minDistSq = float.MaxValue;
-                foreach (IntVec3 cell in hz.HarvestableCells)
-                {
-                    float d = pawn.Position.DistanceToSquared(cell);
-                    if (d < minDistSq) minDistSq = d;
-                }
                 if (minDistSq < bestDistSq)
                 {
                     bestZone = hz;
@@ -41,7 +37,7 @@ namespace VanillaIce
 
             if (bestZone == null) return null;
 
-            foreach (IntVec3 c in bestZone.HarvestableCells.InRandomOrder())
+            foreach (IntVec3 c in bestZone.HarvestableCellsInRandomOrder())
             {
                 if (!pawn.CanReserveAndReach(c, PathEndMode.Touch, Danger.Some, 1, -1, null))
                     continue;
