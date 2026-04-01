@@ -3,7 +3,7 @@
   <ThingDef ParentName="ResourceBase">
     <defName>VanillaIce_Snowball</defName>
     <label>snowball</label>
-    <description>A packed ball of snow. As it melts in warm air, it absorbs heat and cools the surrounding room — a simple low-tech cooling option for cold-climate colonies that lack water or the Odyssey DLC. Will melt away entirely if stored above freezing.</description>
+    <description>A packed ball of snow. Melts in above-freezing temperatures.</description>
     <graphicData>
       <texPath>Things/Item/Resource/VI_Snowballs</texPath>
       <graphicClass>Graphic_StackCount</graphicClass>

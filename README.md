@@ -1,11 +1,12 @@
 # Vanilla Ice
 
-A lightweight RimWorld mod (1.6 / Odyssey) that lets colonists harvest ice from frozen lakes and use the blocks to passively cool rooms.
+A lightweight RimWorld mod for RimWorld 1.6 that lets colonists harvest ice and snow, then use the results to passively cool rooms and caravans.
 
 ## Features
 
-- **Ice Harvest Zones** — Paint zones over thin ice. Colonists assigned to Mining will harvest harvestable cells automatically.
-- **Ice Blocks** — Each harvest yields 2–5 blocks. Stack them in a cool room or use them as a makeshift cooler.
+- **Ice Harvest Zones** — Paint zones over frozen water. Colonists assigned to Mining will harvest harvestable cells automatically.
+- **Ice Blocks** — Harvested ice becomes stackable ice blocks. Yield is configurable and scales with Mining Yield.
+- **Snow Harvest Zones** — Harvest snow into stackable snowballs for lighter low-tech cooling.
 - **Passive cooling** — Ice blocks absorb heat as they melt via vanilla's `GenTemperature.PushHeat`, the same mechanism used by electric coolers. One stack won't replace a cooler, but several blocks in a small room can make a real difference.
 - **Caravan melting** — Ice blocks and snowballs now melt in caravans when the caravan is above freezing, using outdoor world-tile temperature and a configurable stack-based melt rate.
 - **Natural refreeze** — Harvested cells revert to open water. Vanilla's `FreezeManager` handles refreezing when temperatures drop again.
@@ -13,7 +14,7 @@ A lightweight RimWorld mod (1.6 / Odyssey) that lets colonists harvest ice from 
 ## Requirements
 
 - RimWorld 1.6
-- Odyssey DLC (thin ice terrain is an Odyssey feature). The mod loads safely without Odyssey but will have no in-game effect.
+- Odyssey DLC is optional. Without Odyssey, thin-ice harvesting is unavailable, but thick ice and snow harvesting still work.
 
 ## Compatibility
 
