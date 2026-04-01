@@ -20,12 +20,12 @@
   <VanillaIce_Settings_HarvestHeader>Harvesting</VanillaIce_Settings_HarvestHeader>
   <!-- {0} = current value -->
   <VanillaIce_Settings_BlocksPerHarvest>Blocks per harvest action: {0}
-Base number of ice blocks yielded per harvest. The pawn's Mining Yield stat scales this up or down. </VanillaIce_Settings_BlocksPerHarvest>
+Base number of ice blocks yielded per harvest. Mining Yield stat applies. </VanillaIce_Settings_BlocksPerHarvest>
 
   <VanillaIce_Settings_CoolingHeader>Cooling</VanillaIce_Settings_CoolingHeader>
   <!-- {0} = current value -->
   <VanillaIce_Settings_ColdEnergyPerBlock>Cooling power per block: {0} GEU
-Energy absorbed per block per melt tick (every ~4 seconds). Vanilla cooler reference: ~88 GEU per tick.</VanillaIce_Settings_ColdEnergyPerBlock>
+Energy absorbed per ice block. At 200 GEU, 1 full stack lasts 2 to 4 days.</VanillaIce_Settings_ColdEnergyPerBlock>
 
   <VanillaIce_Settings_ResetDefaults>Reset to defaults</VanillaIce_Settings_ResetDefaults>
 
@@ -39,9 +39,9 @@ Energy absorbed per block per melt tick (every ~4 seconds). Vanilla cooler refer
   <VanillaIce_Settings_SnowHarvestHeader>Snow Harvesting</VanillaIce_Settings_SnowHarvestHeader>
   <!-- {0} = current value -->
   <VanillaIce_Settings_SnowballsPerHarvest>Snowballs per harvest action: {0}
-Base number of snowballs yielded per harvest. The pawn's Mining Yield stat scales this up or down.</VanillaIce_Settings_SnowballsPerHarvest>
+Base number of snowballs yielded per harvest. Mining Yield stat applies.</VanillaIce_Settings_SnowballsPerHarvest>
   <!-- {0} = current value -->
   <VanillaIce_Settings_SnowballColdEnergy>Cooling power per snowball: {0} GEU
-Energy absorbed per snowball per melt tick (every ~4 seconds).</VanillaIce_Settings_SnowballColdEnergy>
+Energy absorbed per snowball. At 100 GEU, 1 full stack lasts 1 to 2 days.</VanillaIce_Settings_SnowballColdEnergy>
 
 </LanguageData>
