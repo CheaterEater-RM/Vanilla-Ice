@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationAdd">
+    <xpath>Defs/DesignationCategoryDef[defName="Zone"]/specialDesignatorClasses</xpath>
+    <value>
+      <li>VanillaIce.Designator_ZoneAdd_SnowHarvest</li>
+    </value>
+  </Operation>
+</Patch>

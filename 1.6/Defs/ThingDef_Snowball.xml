@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ThingDef ParentName="ResourceBase">
+    <defName>VanillaIce_Snowball</defName>
+    <label>snowball</label>
+    <description>A packed ball of snow. As it melts in warm air, it absorbs heat and cools the surrounding room — a simple low-tech cooling option for cold-climate colonies that lack water or the Odyssey DLC. Will melt away entirely if stored above freezing.</description>
+    <graphicData>
+      <texPath>Things/Item/Resource/VI_Snowballs</texPath>
+      <graphicClass>Graphic_StackCount</graphicClass>
+      <color>(225,240,255)</color>
+    </graphicData>
+    <soundDrop>ChunkRock_Drop</soundDrop>
+    <soundInteract>ChunkRock_Drop</soundInteract>
+    <statBases>
+      <MaxHitPoints>20</MaxHitPoints>
+      <Mass>2</Mass>
+      <Flammability>0</Flammability>
+      <MarketValue>0.2</MarketValue>
+    </statBases>
+    <stackLimit>75</stackLimit>
+    <tickerType>Rare</tickerType>
+    <thingCategories>
+      <li>ResourcesRaw</li>
+    </thingCategories>
+    <comps>
+      <li Class="VanillaIce.CompProperties_SnowballMelt" />
+    </comps>
+  </ThingDef>
+</Defs>

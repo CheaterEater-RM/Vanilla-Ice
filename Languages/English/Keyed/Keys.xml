@@ -29,4 +29,19 @@ Energy absorbed per block per melt tick (every ~4 seconds). Vanilla cooler refer
 
   <VanillaIce_Settings_ResetDefaults>Reset to defaults</VanillaIce_Settings_ResetDefaults>
 
+  <!-- Snow Harvest Zone -->
+  <VanillaIce_SnowHarvestZone>Snow Harvest Zone</VanillaIce_SnowHarvestZone>
+  <VanillaIce_DesignatorSnowHarvestZoneDesc>Designate an area where colonists will harvest snow into snowballs.</VanillaIce_DesignatorSnowHarvestZoneDesc>
+  <VanillaIce_CommandAllowHarvestSnow>Allow harvesting</VanillaIce_CommandAllowHarvestSnow>
+  <VanillaIce_CommandAllowHarvestSnowDesc>Enables or disables snow harvesting in this zone.</VanillaIce_CommandAllowHarvestSnowDesc>
+
+  <!-- Snow Settings -->
+  <VanillaIce_Settings_SnowHarvestHeader>Snow Harvesting</VanillaIce_Settings_SnowHarvestHeader>
+  <!-- {0} = current value -->
+  <VanillaIce_Settings_SnowballsPerHarvest>Snowballs per harvest action: {0}
+Base number of snowballs yielded per harvest. The pawn's Mining Yield stat scales this up or down.</VanillaIce_Settings_SnowballsPerHarvest>
+  <!-- {0} = current value -->
+  <VanillaIce_Settings_SnowballColdEnergy>Cooling power per snowball: {0} GEU
+Energy absorbed per snowball per melt tick (every ~4 seconds).</VanillaIce_Settings_SnowballColdEnergy>
+
 </LanguageData>
