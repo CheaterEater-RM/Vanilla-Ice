@@ -13,14 +13,37 @@
 
   <!-- Zone inspect string -->
   <VanillaIce_HarvestableCells>Harvestable cells</VanillaIce_HarvestableCells>
+  <VanillaIce_MapStockCount>Map stock</VanillaIce_MapStockCount>
   <VanillaIce_HarvestIceLabel>harvest ice</VanillaIce_HarvestIceLabel>
   <VanillaIce_HarvestSnowLabel>harvest snow</VanillaIce_HarvestSnowLabel>
   <VanillaIce_CannotPrioritize>Cannot prioritize</VanillaIce_CannotPrioritize>
+  <VanillaIce_CannotHarvest_DisallowedZone>This harvest zone is disabled.</VanillaIce_CannotHarvest_DisallowedZone>
   <VanillaIce_CannotHarvestIce_NoHarvestableCells>No harvestable ice remains in this zone.</VanillaIce_CannotHarvestIce_NoHarvestableCells>
+  <VanillaIce_CannotHarvestIce_StockLimitReached>Ice harvesting is paused. Current map stock: {0}. Harvesting pauses at {1} and resumes at {2}.</VanillaIce_CannotHarvestIce_StockLimitReached>
   <VanillaIce_CannotHarvestSnow_NoHarvestableCells>No harvestable snow remains in this zone.</VanillaIce_CannotHarvestSnow_NoHarvestableCells>
+  <VanillaIce_CannotHarvestSnow_StockLimitReached>Snow harvesting is paused. Current map stock: {0}. Harvesting pauses at {1} and resumes at {2}.</VanillaIce_CannotHarvestSnow_StockLimitReached>
   <VanillaIce_CannotHarvest_NoReachableCell>No reachable harvest cell is available in this zone.</VanillaIce_CannotHarvest_NoReachableCell>
   <VanillaIce_CannotHarvest_Drafted>Selected pawn is drafted.</VanillaIce_CannotHarvest_Drafted>
   <VanillaIce_CannotHarvest_NotOnMap>Selected pawn is not on this map.</VanillaIce_CannotHarvest_NotOnMap>
+  <VanillaIce_StockLimitDisabled>Stock target: off</VanillaIce_StockLimitDisabled>
+  <VanillaIce_StockLimitActive>Stock target active. Current: {0}. Pause at {1}, resume at {2}.</VanillaIce_StockLimitActive>
+  <VanillaIce_StockLimitPaused>Stock target reached. Current: {0}. Harvesting resumes at {2}.</VanillaIce_StockLimitPaused>
+
+  <VanillaIce_CommandMaintainStockTarget>Stock target</VanillaIce_CommandMaintainStockTarget>
+  <VanillaIce_CommandMaintainStockTargetDesc>Open stock target settings for this resource on the current map.</VanillaIce_CommandMaintainStockTargetDesc>
+  <VanillaIce_StockTargetConfigDescription>Applies map-wide to all harvest zones of this resource on the current map.</VanillaIce_StockTargetConfigDescription>
+  <VanillaIce_StockTargetEnabled>Enable stock target</VanillaIce_StockTargetEnabled>
+  <VanillaIce_StockTargetEnabledDesc>Pause harvesting when the map stock reaches the pause threshold, then resume once it falls back to the resume threshold.</VanillaIce_StockTargetEnabledDesc>
+  <VanillaIce_StockTargetPauseField>Pause at</VanillaIce_StockTargetPauseField>
+  <VanillaIce_StockTargetResumeField>Resume at</VanillaIce_StockTargetResumeField>
+  <VanillaIce_CommandPauseHarvestAt>Pause at: {0}</VanillaIce_CommandPauseHarvestAt>
+  <VanillaIce_CommandPauseHarvestAtDesc>Set the map-wide stock count where harvesting pauses.</VanillaIce_CommandPauseHarvestAtDesc>
+  <VanillaIce_CommandResumeHarvestAt>Resume at: {0}</VanillaIce_CommandResumeHarvestAt>
+  <VanillaIce_CommandResumeHarvestAtDesc>Set the map-wide stock count where harvesting resumes after pausing.</VanillaIce_CommandResumeHarvestAtDesc>
+  <VanillaIce_CommandPauseHarvestAtDialog>Pause harvesting when map stock reaches: {0}
+Harvesting resumes at: {1}</VanillaIce_CommandPauseHarvestAtDialog>
+  <VanillaIce_CommandResumeHarvestAtDialog>Resume harvesting when map stock falls to: {0}
+Harvesting pauses at: {1}</VanillaIce_CommandResumeHarvestAtDialog>
 
   <!-- Settings window -->
   <VanillaIce_SettingsCategory>Vanilla Ice</VanillaIce_SettingsCategory>

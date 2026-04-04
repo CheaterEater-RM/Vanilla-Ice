@@ -12,6 +12,7 @@ namespace VanillaIce
 
         private bool allowed = true;
         public bool Allowed => allowed;
+        private VanillaIceMapComponent MapComponent => Map?.GetComponent<VanillaIceMapComponent>();
         protected override Color NextZoneColor => new Color(0.85f, 0.92f, 1f, 0.14f);
 
         public Zone_SnowHarvest() { }
@@ -82,6 +83,7 @@ namespace VanillaIce
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (Gizmo g in base.GetGizmos()) yield return g;
+
             yield return new Command_Toggle
             {
                 defaultLabel = "VanillaIce_CommandAllowHarvestSnow".Translate(),
@@ -90,6 +92,17 @@ namespace VanillaIce
                 isActive     = () => allowed,
                 toggleAction = () => SetAllowed(!allowed)
             };
+
+            if (MapComponent != null)
+            {
+                yield return new Command_Action
+                {
+                    defaultLabel = "VanillaIce_CommandMaintainStockTarget".Translate(),
+                    defaultDesc  = "VanillaIce_CommandMaintainStockTargetDesc".Translate(),
+                    icon         = TexButton.Suspend,
+                    action       = OpenStockConfigDialog
+                };
+            }
         }
 
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
@@ -132,8 +145,23 @@ namespace VanillaIce
         public override string GetInspectString()
         {
             int count = HarvestableCellCount();
-            return base.GetInspectString()
+            string inspectString = base.GetInspectString()
                 + "\n" + "VanillaIce_HarvestableCells".Translate() + ": " + count;
+
+            VanillaIceMapComponent component = MapComponent;
+            if (component == null)
+                return inspectString;
+
+            int stockCount = component.SnowballCount;
+
+            inspectString += "\n" + "VanillaIce_MapStockCount".Translate() + ": " + stockCount;
+            inspectString += "\n" + (component.SnowStockLimitEnabled
+                ? (component.SnowPausedForStock
+                    ? "VanillaIce_StockLimitPaused".Translate(stockCount, component.SnowPauseAtStockCount, component.SnowResumeAtStockCount)
+                    : "VanillaIce_StockLimitActive".Translate(stockCount, component.SnowPauseAtStockCount, component.SnowResumeAtStockCount))
+                : "VanillaIce_StockLimitDisabled".Translate());
+
+            return inspectString;
         }
 
         private void SetAllowed(bool newAllowed)
@@ -143,6 +171,27 @@ namespace VanillaIce
             allowed = newAllowed;
             if (!allowed)
                 HarvestJobUtility.InterruptCurrentHarvestJobsForZone(Map, VanillaIceDefOf.VanillaIce_HarvestSnow, this);
+        }
+
+        private void OpenStockConfigDialog()
+        {
+            VanillaIceMapComponent component = MapComponent;
+            if (component == null) return;
+
+            Find.WindowStack.Add(new Dialog_HarvestStockConfig(
+                "VanillaIce_CommandMaintainStockTarget",
+                "VanillaIce_StockTargetConfigDescription",
+                "VanillaIce_StockTargetEnabled",
+                "VanillaIce_StockTargetEnabledDesc",
+                "VanillaIce_StockTargetPauseField",
+                "VanillaIce_StockTargetResumeField",
+                () => component.SnowballCount,
+                () => component.SnowStockLimitEnabled,
+                component.SetSnowStockLimitEnabled,
+                () => component.SnowPauseAtStockCount,
+                component.SetSnowPauseAtStockCount,
+                () => component.SnowResumeAtStockCount,
+                component.SetSnowResumeAtStockCount));
         }
     }
 }

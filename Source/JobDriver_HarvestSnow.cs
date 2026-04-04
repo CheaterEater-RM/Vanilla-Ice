@@ -30,14 +30,7 @@ namespace VanillaIce
             {
                 IntVec3 c   = HarvestCell;
                 Map     map = pawn.Map;
-                if (c.GetSnowDepth(map) < Zone_SnowHarvest.MinHarvestDepth) return true;
-                foreach (Zone z in map.zoneManager.AllZones)
-                {
-                    Zone_SnowHarvest hz = z as Zone_SnowHarvest;
-                    if (hz != null && hz.Allowed && hz.ContainsCell(c))
-                        return false;
-                }
-                return true;
+                return !HarvestJobUtility.HasAllowedSnowHarvestZone(map, c);
             });
 
             yield return Toils_Goto.GotoCell(HarvestCellInd, PathEndMode.Touch);

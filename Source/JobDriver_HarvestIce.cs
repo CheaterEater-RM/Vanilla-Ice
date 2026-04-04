@@ -43,16 +43,7 @@ namespace VanillaIce
             {
                 IntVec3 c  = HarvestCell;
                 Map    map = pawn.Map;
-
-                if (Zone_IceHarvest.GetHarvestMode(c, map) == IceHarvestMode.None) return true;
-
-                foreach (Zone z in map.zoneManager.AllZones)
-                {
-                    Zone_IceHarvest hz = z as Zone_IceHarvest;
-                    if (hz != null && hz.Allowed && hz.ContainsCell(c))
-                        return false; // zone still valid
-                }
-                return true; // no valid zone found
+                return !HarvestJobUtility.HasAllowedIceHarvestZone(map, c);
             });
 
             // Step 1: Walk to the cell

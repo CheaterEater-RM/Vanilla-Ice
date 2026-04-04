@@ -7,22 +7,108 @@ namespace VanillaIce
     internal static class HarvestJobUtility
     {
         public static Job TryMakeForcedIceHarvestJob(Pawn pawn, Zone_IceHarvest zone, out string disabledReason)
-            => TryMakeForcedHarvestJob(
+        {
+            disabledReason = null;
+
+            if (zone == null)
+                return null;
+
+            if (!zone.Allowed)
+            {
+                disabledReason = "VanillaIce_CannotHarvest_DisallowedZone".Translate();
+                return null;
+            }
+
+            if (!AllowsIceHarvesting(zone.Map, out disabledReason))
+                return null;
+
+            return TryMakeForcedHarvestJob(
                 pawn,
                 zone,
                 zone.HarvestableCells,
                 VanillaIceDefOf.VanillaIce_HarvestIce,
                 "VanillaIce_CannotHarvestIce_NoHarvestableCells",
                 out disabledReason);
+        }
 
         public static Job TryMakeForcedSnowHarvestJob(Pawn pawn, Zone_SnowHarvest zone, out string disabledReason)
-            => TryMakeForcedHarvestJob(
+        {
+            disabledReason = null;
+
+            if (zone == null)
+                return null;
+
+            if (!zone.Allowed)
+            {
+                disabledReason = "VanillaIce_CannotHarvest_DisallowedZone".Translate();
+                return null;
+            }
+
+            if (!AllowsSnowHarvesting(zone.Map, out disabledReason))
+                return null;
+
+            return TryMakeForcedHarvestJob(
                 pawn,
                 zone,
                 zone.HarvestableCells,
                 VanillaIceDefOf.VanillaIce_HarvestSnow,
                 "VanillaIce_CannotHarvestSnow_NoHarvestableCells",
                 out disabledReason);
+        }
+
+        public static int CountThingsOnMap(Map map, ThingDef thingDef)
+        {
+            if (map?.listerThings == null || thingDef == null) return 0;
+
+            int count = 0;
+            var things = map.listerThings.ThingsOfDef(thingDef);
+            if (things == null) return 0;
+
+            for (int i = 0; i < things.Count; i++)
+            {
+                Thing thing = things[i];
+                if (thing.Spawned)
+                    count += thing.stackCount;
+            }
+
+            return count;
+        }
+
+        public static bool AllowsIceHarvesting(Map map, out string disabledReason)
+        {
+            VanillaIceMapComponent component = map?.GetComponent<VanillaIceMapComponent>();
+            if (component == null)
+            {
+                disabledReason = null;
+                return true;
+            }
+
+            return component.IsIceHarvestingAllowed(out disabledReason);
+        }
+
+        public static bool AllowsSnowHarvesting(Map map, out string disabledReason)
+        {
+            VanillaIceMapComponent component = map?.GetComponent<VanillaIceMapComponent>();
+            if (component == null)
+            {
+                disabledReason = null;
+                return true;
+            }
+
+            return component.IsSnowHarvestingAllowed(out disabledReason);
+        }
+
+        public static void InterruptCurrentHarvestJobs(Map map, JobDef jobDef)
+        {
+            if (map?.mapPawns == null || jobDef == null) return;
+
+            foreach (Pawn pawn in map.mapPawns.AllPawnsSpawned)
+            {
+                Job currentJob = pawn.CurJob;
+                if (currentJob?.def == jobDef)
+                    pawn.jobs?.EndCurrentJob(JobCondition.InterruptForced);
+            }
+        }
 
         public static void InterruptCurrentHarvestJobsForZone(Map map, JobDef jobDef, Zone zone)
         {
@@ -58,6 +144,7 @@ namespace VanillaIce
         {
             if (map == null || !cell.IsValid || !cell.InBounds(map)) return false;
             if (Zone_IceHarvest.GetHarvestMode(cell, map) == IceHarvestMode.None) return false;
+            if (!AllowsIceHarvesting(map, out _)) return false;
 
             foreach (Zone zone in map.zoneManager.AllZones)
             {
@@ -72,6 +159,7 @@ namespace VanillaIce
         {
             if (map == null || !cell.IsValid || !cell.InBounds(map)) return false;
             if (cell.GetSnowDepth(map) < Zone_SnowHarvest.MinHarvestDepth) return false;
+            if (!AllowsSnowHarvesting(map, out _)) return false;
 
             foreach (Zone zone in map.zoneManager.AllZones)
             {

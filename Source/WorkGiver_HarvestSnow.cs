@@ -17,6 +17,7 @@ namespace VanillaIce
         public override Job NonScanJob(Pawn pawn)
         {
             if (pawn.Map == null) return null;
+            if (!HarvestJobUtility.AllowsSnowHarvesting(pawn.Map, out _)) return null;
 
             Zone_SnowHarvest bestZone = null;
             float bestDistSq = float.MaxValue;
