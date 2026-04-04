@@ -9,9 +9,9 @@ namespace VanillaIce
 
     public class Comp_SnowballMelt : Comp_MeltableBase
     {
-        private const float TempDropPerBall = 4f;
+        private const float AdditionalBallTemperatureStep = 4f;
 
-        protected override float TempDropPerUnit => TempDropPerBall;
+        protected override float AdditionalUnitTemperatureStep => AdditionalBallTemperatureStep;
 
         protected override float ColdEnergyPerUnit => GetConfiguredColdEnergy(VanillaIceMod.Settings?.SnowballColdEnergy
                                                                               ?? VanillaIceSettings.DefaultSnowballColdEnergy);

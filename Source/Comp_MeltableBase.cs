@@ -11,7 +11,7 @@ namespace VanillaIce
 
         private float caravanMeltProgress;
 
-        protected abstract float TempDropPerUnit { get; }
+        protected abstract float AdditionalUnitTemperatureStep { get; }
 
         protected abstract float ColdEnergyPerUnit { get; }
 
@@ -25,7 +25,7 @@ namespace VanillaIce
             float temp = parent.Position.GetTemperature(map);
             if (temp <= MeltThreshold) return;
 
-            int unitsMelted = Mathf.CeilToInt(temp / TempDropPerUnit);
+            int unitsMelted = GetUnitsMeltedFromTemperature(temp);
             unitsMelted = Mathf.Min(unitsMelted, parent.stackCount);
             if (unitsMelted <= 0) return;
 
@@ -96,6 +96,13 @@ namespace VanillaIce
         protected float GetConfiguredColdEnergy(float configuredValue)
         {
             return configuredValue > 0f ? configuredValue : DefaultColdEnergyPerUnit;
+        }
+
+        private int GetUnitsMeltedFromTemperature(float temperatureAboveThreshold)
+        {
+            float step = Mathf.Max(0.01f, AdditionalUnitTemperatureStep);
+            int additionalUnits = Mathf.FloorToInt((Mathf.Sqrt(1f + (8f * temperatureAboveThreshold / step)) - 1f) * 0.5f);
+            return 1 + additionalUnits;
         }
 
         private void RemoveUnits(int count)

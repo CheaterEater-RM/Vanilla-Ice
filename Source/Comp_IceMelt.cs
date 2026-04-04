@@ -17,13 +17,14 @@ namespace VanillaIce
     /// same GenTemperature.PushHeat API used by vanilla coolers.
     ///
     /// ColdEnergyPerBlock is read from VanillaIceSettings so players can tune it.
-    /// TempDropPerBlock is fixed: each 4 °C above freezing causes one block to melt.
+    /// AdditionalBlockTemperatureStep is fixed: each extra block needs a larger
+    /// temperature surplus than the last, using 4 °C, 12 °C, 24 °C, and so on.
     /// </summary>
     public class Comp_IceMelt : Comp_MeltableBase
     {
-        private const float TempDropPerBlock = 4f;
+        private const float AdditionalBlockTemperatureStep = 4f;
 
-        protected override float TempDropPerUnit => TempDropPerBlock;
+        protected override float AdditionalUnitTemperatureStep => AdditionalBlockTemperatureStep;
 
         protected override float ColdEnergyPerUnit => GetConfiguredColdEnergy(VanillaIceMod.Settings?.ColdEnergyPerBlock
                                                                               ?? VanillaIceSettings.DefaultColdEnergyPerBlock);
