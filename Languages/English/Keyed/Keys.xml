@@ -13,6 +13,14 @@
 
   <!-- Zone inspect string -->
   <VanillaIce_HarvestableCells>Harvestable cells</VanillaIce_HarvestableCells>
+  <VanillaIce_HarvestIceLabel>harvest ice</VanillaIce_HarvestIceLabel>
+  <VanillaIce_HarvestSnowLabel>harvest snow</VanillaIce_HarvestSnowLabel>
+  <VanillaIce_CannotPrioritize>Cannot prioritize</VanillaIce_CannotPrioritize>
+  <VanillaIce_CannotHarvestIce_NoHarvestableCells>No harvestable ice remains in this zone.</VanillaIce_CannotHarvestIce_NoHarvestableCells>
+  <VanillaIce_CannotHarvestSnow_NoHarvestableCells>No harvestable snow remains in this zone.</VanillaIce_CannotHarvestSnow_NoHarvestableCells>
+  <VanillaIce_CannotHarvest_NoReachableCell>No reachable harvest cell is available in this zone.</VanillaIce_CannotHarvest_NoReachableCell>
+  <VanillaIce_CannotHarvest_Drafted>Selected pawn is drafted.</VanillaIce_CannotHarvest_Drafted>
+  <VanillaIce_CannotHarvest_NotOnMap>Selected pawn is not on this map.</VanillaIce_CannotHarvest_NotOnMap>
 
   <!-- Settings window -->
   <VanillaIce_SettingsCategory>Vanilla Ice</VanillaIce_SettingsCategory>

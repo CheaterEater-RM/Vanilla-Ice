@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace VanillaIce
 {
@@ -129,8 +130,39 @@ namespace VanillaIce
                 defaultDesc  = "VanillaIce_CommandAllowHarvestIceDesc".Translate(),
                 icon         = TexCommand.ForbidOff,
                 isActive     = () => allowed,
-                toggleAction = () => { allowed = !allowed; }
+                toggleAction = () => SetAllowed(!allowed)
             };
+        }
+
+        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn selPawn)
+        {
+            foreach (FloatMenuOption option in base.GetFloatMenuOptions(selPawn))
+                yield return option;
+
+            if (selPawn == null || selPawn.Drafted)
+                yield break;
+
+            Job job = HarvestJobUtility.TryMakeForcedIceHarvestJob(selPawn, this, out string disabledReason);
+            if (job != null)
+            {
+                yield return new FloatMenuOption(
+                    "PrioritizeGenericSimple".Translate("VanillaIce_HarvestIceLabel".Translate()),
+                    () => selPawn.jobs.TryTakeOrderedJob(job, JobTag.Misc));
+                yield break;
+            }
+
+            if (!disabledReason.NullOrEmpty())
+            {
+                yield return new FloatMenuOption(
+                    "VanillaIce_CannotPrioritize".Translate().CapitalizeFirst() + ": " + disabledReason,
+                    null);
+            }
+        }
+
+        public override void Delete(bool playSound)
+        {
+            HarvestJobUtility.InterruptCurrentHarvestJobsForZone(Map, VanillaIceDefOf.VanillaIce_HarvestIce, this);
+            base.Delete(playSound);
         }
 
         public override void ExposeData()
@@ -144,6 +176,15 @@ namespace VanillaIce
             int count = HarvestableCellCount();
             return base.GetInspectString()
                 + "\n" + "VanillaIce_HarvestableCells".Translate() + ": " + count;
+        }
+
+        private void SetAllowed(bool newAllowed)
+        {
+            if (allowed == newAllowed) return;
+
+            allowed = newAllowed;
+            if (!allowed)
+                HarvestJobUtility.InterruptCurrentHarvestJobsForZone(Map, VanillaIceDefOf.VanillaIce_HarvestIce, this);
         }
     }
 

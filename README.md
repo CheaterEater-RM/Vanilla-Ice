@@ -10,6 +10,9 @@ A lightweight RimWorld mod for RimWorld 1.6 that lets colonists harvest ice and 
 - **Passive cooling** — Ice blocks absorb heat as they melt via vanilla's `GenTemperature.PushHeat`, the same mechanism used by electric coolers. One stack won't replace a cooler, but several blocks in a small room can make a real difference.
 - **Caravan melting** — Ice blocks and snowballs now melt in caravans when the caravan is above freezing, using outdoor world-tile temperature and a configurable stack-based melt rate.
 
+## Savegames
+Custom zones break savegames; before removing the mod, remove all zones and let jobs get cleaned up.
+
 ## License
 
 MIT
